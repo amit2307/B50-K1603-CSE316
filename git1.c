@@ -1,22 +1,44 @@
+//Operating System Project By Amit Kumar Ranjan
+//Section : K1603
+//Registration NO. : 11607646
+
 #include<stdio.h>
 #include<stdbool.h>
 //average time
 
-void AvgTime(int process[], int n, int brust[],int quant)
+void AvgTime(int process[], int n, int brust[],int quant,char name)
 {
     int i,wt[n], temp[n], total_wt = 0, total_time= 0;
+    int avg_wait , avg_turnaround ;
     WaitingTime(process, n,brust, wt, quant);
     TurnAroundTime(process, n, brust, wt, temp);
-    printf("Processes :  Burst time :  Waiting time :   Turn around time : \n");
-
-    for (i=0; i<n; i++)
+    printf("Processes :  ArivalTime:   BrustTime :  WaitingTime :   TurnAroundTime : \n");
+    int count=0;
+    for (i=1; i<=n; i++)
     {
         total_wt = total_wt + wt[i];
         total_time = total_time + temp[i];
-        printf(" i+1 \t\t  %d \t  %d \t\t %d\n",brust,wt[i],temp[i]);
+	count+=brust[i];
+	if(count>60)
+	{
+		break;
+	}
+        printf("%d \t\t  %d \t\t  %d \t \t %d \t\t\t%d\n",i,process[i],brust[i],wt[i],temp[i]);
     }
- 
-    printf("Average waiting time = %d",(float)total_wt / (float)n);+    printf("\n Average turn around time = %d",(float)total_time/(float)n);
+
+    // average query time and average waiting time
+    avg_wait=total_wt/(i-1);
+    avg_turnaround=total_time/(i-1);
+    if(name=='s')
+    {
+	printf("\n Time he spend on handling of students query is : %d",avg_turnaround);
+        printf("\n Average query time is : %d",avg_wait);
+    }
+    else
+    {
+	printf("\n Time he spend on handling of faculty query is : %d",avg_turnaround);
+        printf("\n Average query time is : %d",avg_wait);
+    }
 }
 
 //waiting time frome here
