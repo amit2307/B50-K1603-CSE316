@@ -47,28 +47,29 @@ void WaitingTime(int process[], int n,int brust[], int wt[], int quan)
 {
     int i,t,rem[n];
     t=0;
-    for (i = 0 ; i < n ; i++)
+    for (i = 1 ; i <= n ; i++)
         {
             rem[i] =  brust[i];
         }
-    while (1)
+    while(1)
     {
         bool flag= true;
-        for (i = 0 ; i < n; i++)
+        for(i = 1; i <= n; i++)
         {
-            if (rem[i] > 0)
+            if (rem[i]>0)
             {
-                flag = false; 
+                flag=false; 
  
-                if (rem[i] > quan)
+                if (rem[i]>quan)
                 {
                     t += quan;
                     rem[i] -= quan;
                 }
                 else
                 {
+	            wt[i] = t - process[i];
                     t = t + rem[i];
-                    wt[i] = t - brust[i];
+                    //wt[i] = t - brust[i];
                     rem[i] = 0;
                 }
             }
@@ -95,6 +96,6 @@ int main()
     int n = sizeof process / sizeof process[0];
     int burst_time[] = {10, 5, 8};
     int quantum = 2;
-    AvgTime(process, n, burst_time, quantum);
+    AvgTime(process1, n ,burst_time1,quantum,'f');
     return 0;
 }
