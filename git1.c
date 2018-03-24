@@ -80,13 +80,14 @@ void WaitingTime(int process[], int n,int brust[], int wt[], int quan)
 }
 
 //turn around time from here
-
 void TurnAroundTime(int process[], int n,int brust[], int wt[], int temp[])
 {
     int i;
-    for (i = 0; i < n ; i++)
+    for (i = 1; i <=n ; i++)
         temp[i] = brust[i] + wt[i];
 }
+
+
 
 
 
